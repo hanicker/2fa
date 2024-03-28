@@ -21,11 +21,18 @@ use Symfony\Component\Security\Http\Firewall\FirewallListenerInterface;
  */
 class TwoFactorAccessListener extends AbstractListener implements FirewallListenerInterface
 {
+    private TwoFactorFirewallConfig $twoFactorFirewallConfig;
+    private TokenStorageInterface $tokenStorage;
+    private TwoFactorAccessDecider $twoFactorAccessDecider;
+
     public function __construct(
          TwoFactorFirewallConfig $twoFactorFirewallConfig,
          TokenStorageInterface $tokenStorage,
          TwoFactorAccessDecider $twoFactorAccessDecider
     ) {
+        $this->twoFactorFirewallConfig = $twoFactorFirewallConfig;
+        $this->tokenStorage = $tokenStorage;
+        $this->twoFactorAccessDecider = $twoFactorAccessDecider;
     }
 
     public function supports(Request $request): ?bool
