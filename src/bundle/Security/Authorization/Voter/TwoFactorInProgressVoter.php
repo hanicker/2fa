@@ -20,7 +20,7 @@ class TwoFactorInProgressVoter implements VoterInterface
     /**
      * {@inheritdoc}
      */
-    public function vote(TokenInterface $token, mixed $subject, array $attributes): int
+    public function vote(TokenInterface $token, $subject, array $attributes)
     {
         if (!($token instanceof TwoFactorTokenInterface)) {
             return VoterInterface::ACCESS_ABSTAIN;
