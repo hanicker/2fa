@@ -16,6 +16,10 @@ use Scheb\TwoFactorBundle\Model\PersisterInterface;
 class DoctrinePersisterFactory
 {
     private ManagerRegistry $managerRegistry;
+    /**
+     * @var mixed
+     */
+    private $objectManagerName;
 
     public function __construct(
         ?ManagerRegistry $managerRegistry,

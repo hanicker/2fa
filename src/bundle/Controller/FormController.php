@@ -29,6 +29,13 @@ if(!function_exists('str_contains')){
 
 class FormController
 {
+    private TwoFactorProviderRegistry $providerRegistry;
+    private TokenStorageInterface $tokenStorage;
+    private TwoFactorFirewallContext $twoFactorFirewallContext;
+    private LogoutUrlGenerator $logoutUrlGenerator;
+    private ?TrustedDeviceManagerInterface $trustedDeviceManager;
+    private bool $trustedFeatureEnabled;
+
     public function __construct(
          TokenStorageInterface $tokenStorage,
          TwoFactorProviderRegistry $providerRegistry,
