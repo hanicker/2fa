@@ -16,12 +16,14 @@ class CheckBackupCodeListener extends AbstractCheckCodeListener
     // Must be called before CheckTwoFactorCodeListener, because CheckTwoFactorCodeListener will throw an exception
     // when the code is wrong.
     public const LISTENER_PRIORITY = CheckTwoFactorCodeListener::LISTENER_PRIORITY + 16;
+    private BackupCodeManagerInterface $backupCodeManager;
 
     public function __construct(
         PreparationRecorderInterface $preparationRecorder,
         BackupCodeManagerInterface $backupCodeManager
     ) {
         parent::__construct($preparationRecorder);
+        $this->backupCodeManager = $backupCodeManager;
     }
 
     protected function isValidCode(string $providerName, object $user, string $code): bool

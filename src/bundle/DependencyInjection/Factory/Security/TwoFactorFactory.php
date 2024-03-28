@@ -60,6 +60,7 @@ class TwoFactorFactory implements FirewallListenerFactoryInterface, Authenticato
 
     public function __construct(TwoFactorServicesFactory $twoFactorServicesFactory)
     {
+        $this->twoFactorServicesFactory = $twoFactorServicesFactory;
     }
 
     public function addConfiguration(NodeDefinition $builder): void

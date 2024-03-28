@@ -17,8 +17,11 @@ use function sprintf;
  */
 abstract class AbstractCheckCodeListener implements EventSubscriberInterface
 {
+    private PreparationRecorderInterface $preparationRecorder;
+
     public function __construct(PreparationRecorderInterface $preparationRecorder)
     {
+        $this->preparationRecorder = $preparationRecorder;
     }
 
     public function checkPassport(CheckPassportEvent $event): void

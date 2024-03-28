@@ -17,6 +17,7 @@ class AuthenticationTrustResolver implements AuthenticationTrustResolverInterfac
 {
     public function __construct( AuthenticationTrustResolverInterface $decoratedTrustResolver)
     {
+        $this->decoratedTrustResolver = $decoratedTrustResolver;
     }
 
     /**

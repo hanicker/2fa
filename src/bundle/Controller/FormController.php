@@ -37,6 +37,12 @@ class FormController
          ?TrustedDeviceManagerInterface $trustedDeviceManager,
          bool $trustedFeatureEnabled
     ) {
+        $this->tokenStorage = $tokenStorage;
+        $this->providerRegistry = $providerRegistry;
+        $this->twoFactorFirewallContext = $twoFactorFirewallContext;
+        $this->logoutUrlGenerator = $logoutUrlGenerator;
+        $this->trustedDeviceManager = $trustedDeviceManager;
+        $this->trustedFeatureEnabled = $trustedFeatureEnabled;
     }
 
     public function form(Request $request): Response

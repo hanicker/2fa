@@ -17,8 +17,11 @@ use function sprintf;
  */
 class TokenPreparationRecorder implements PreparationRecorderInterface
 {
-    public function __construct( TokenStorageInterface $tokenStorage)
+    private TokenStorageInterface $tokenStorage;
+
+    public function __construct(TokenStorageInterface $tokenStorage)
     {
+        $this->tokenStorage = $tokenStorage;
     }
 
     public function isTwoFactorProviderPrepared(string $firewallName, string $providerName): bool

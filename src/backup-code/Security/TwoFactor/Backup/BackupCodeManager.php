@@ -12,8 +12,11 @@ use Scheb\TwoFactorBundle\Model\PersisterInterface;
  */
 class BackupCodeManager implements BackupCodeManagerInterface
 {
+    private PersisterInterface $persister;
+
     public function __construct(PersisterInterface $persister)
     {
+        $this->persister = $persister;
     }
 
     public function isBackupCode(object $user, string $code): bool

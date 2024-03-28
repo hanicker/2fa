@@ -14,8 +14,11 @@ use function assert;
  */
 class AuthenticationContextFactory implements AuthenticationContextFactoryInterface
 {
+    private string $authenticationContextClass;
+
     public function __construct(string $authenticationContextClass)
     {
+        $this->authenticationContextClass = $authenticationContextClass;
     }
 
     public function create(Request $request, TokenInterface $token, Passport $passport, string $firewallName): AuthenticationContextInterface

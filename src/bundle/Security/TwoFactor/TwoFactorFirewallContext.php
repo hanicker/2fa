@@ -13,10 +13,16 @@ use function sprintf;
 class TwoFactorFirewallContext
 {
     /**
+     * @var TwoFactorFirewallConfig[]
+     */
+    private array $firewallConfigs;
+
+    /**
      * @param array<string,TwoFactorFirewallConfig> $firewallConfigs
      */
     public function __construct( array $firewallConfigs)
     {
+        $this->firewallConfigs = $firewallConfigs;
     }
 
     public function getFirewallConfig(string $firewallName): TwoFactorFirewallConfig

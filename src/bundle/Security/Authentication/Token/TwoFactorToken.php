@@ -33,6 +33,8 @@ class TwoFactorToken implements TwoFactorTokenInterface
 
     /** @var bool[] */
     private array $preparedProviders = [];
+    private ?string $credentials;
+    private string $firewallName;
 
     /**
      * @param string[] $twoFactorProviders
@@ -43,6 +45,9 @@ class TwoFactorToken implements TwoFactorTokenInterface
          string $firewallName,
         array $twoFactorProviders
     ) {
+        $this->credentials = $credentials;
+        $this->firewallName = $firewallName;
+
         if (null === $authenticatedToken->getUser()) {
             throw new InvalidArgumentException('The authenticated token must have a user object set.');
         }

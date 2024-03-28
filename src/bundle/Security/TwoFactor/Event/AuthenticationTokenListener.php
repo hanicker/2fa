@@ -20,6 +20,12 @@ use Symfony\Component\Security\Http\Event\AuthenticationTokenCreatedEvent;
  */
 class AuthenticationTokenListener implements EventSubscriberInterface
 {
+    private string $firewallName;
+    private TwoFactorConditionRegistry $twoFactorConditionRegistry;
+    private TwoFactorProviderInitiator $twoFactorProviderInitiator;
+    private AuthenticationContextFactoryInterface $authenticationContextFactory;
+    private RequestStack $requestStack;
+
     public function __construct(
          string $firewallName,
          TwoFactorConditionRegistry $twoFactorConditionRegistry,
@@ -27,6 +33,11 @@ class AuthenticationTokenListener implements EventSubscriberInterface
          AuthenticationContextFactoryInterface $authenticationContextFactory,
          RequestStack $requestStack
     ) {
+        $this->firewallName = $firewallName;
+        $this->twoFactorConditionRegistry = $twoFactorConditionRegistry;
+        $this->twoFactorProviderInitiator = $twoFactorProviderInitiator;
+        $this->authenticationContextFactory = $authenticationContextFactory;
+        $this->requestStack = $requestStack;
     }
 
     public function onAuthenticationTokenCreated(AuthenticationTokenCreatedEvent $event): void

@@ -13,10 +13,16 @@ use function sprintf;
 class TwoFactorProviderRegistry
 {
     /**
+     * @var iterable|TwoFactorProviderInterface[]
+     */
+    private iterable $providers;
+
+    /**
      * @param iterable<string,TwoFactorProviderInterface> $providers
      */
     public function __construct( iterable $providers)
     {
+        $this->providers = $providers;
     }
 
     /**

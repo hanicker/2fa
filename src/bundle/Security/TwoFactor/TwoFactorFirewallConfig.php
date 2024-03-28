@@ -15,6 +15,14 @@ use Symfony\Component\Security\Http\HttpUtils;
 class TwoFactorFirewallConfig
 {
     /**
+     * @var mixed[]
+     */
+    private array $options;
+    private string $firewallName;
+    private HttpUtils $httpUtils;
+    private RequestDataReader $requestDataReader;
+
+    /**
      * @param array<string,mixed> $options
      */
     public function __construct(
@@ -23,6 +31,10 @@ class TwoFactorFirewallConfig
          HttpUtils $httpUtils,
          RequestDataReader $requestDataReader
     ) {
+        $this->options = $options;
+        $this->firewallName = $firewallName;
+        $this->httpUtils = $httpUtils;
+        $this->requestDataReader = $requestDataReader;
     }
 
     public function getFirewallName(): string

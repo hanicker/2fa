@@ -33,6 +33,11 @@ class TwoFactorProviderPreparationListener implements EventSubscriberInterface
 
     private ?TwoFactorTokenInterface $twoFactorToken = null;
     private LoggerInterface $logger;
+    private TwoFactorProviderRegistry $providerRegistry;
+    private PreparationRecorderInterface $preparationRecorder;
+    private string $firewallName;
+    private bool $prepareOnLogin;
+    private bool $prepareOnAccessDenied;
 
     public function __construct(
          TwoFactorProviderRegistry $providerRegistry,
@@ -43,6 +48,11 @@ class TwoFactorProviderPreparationListener implements EventSubscriberInterface
          bool $prepareOnAccessDenied
     ) {
         $this->logger = $logger ?? new NullLogger();
+        $this->providerRegistry = $providerRegistry;
+        $this->preparationRecorder = $preparationRecorder;
+        $this->firewallName = $firewallName;
+        $this->prepareOnLogin = $prepareOnLogin;
+        $this->prepareOnAccessDenied = $prepareOnAccessDenied;
     }
 
     public function onLogin(AuthenticationEvent $event): void

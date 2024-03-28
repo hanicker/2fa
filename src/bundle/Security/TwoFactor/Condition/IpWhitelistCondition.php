@@ -13,8 +13,11 @@ use Symfony\Component\HttpFoundation\IpUtils;
  */
 class IpWhitelistCondition implements TwoFactorConditionInterface
 {
-    public function __construct( IpWhitelistProviderInterface $ipWhitelistProvider)
+    private IpWhitelistProviderInterface $ipWhitelistProvider;
+
+    public function __construct(IpWhitelistProviderInterface $ipWhitelistProvider)
     {
+        $this->ipWhitelistProvider = $ipWhitelistProvider;
     }
 
     public function shouldPerformTwoFactorAuthentication(AuthenticationContextInterface $context): bool

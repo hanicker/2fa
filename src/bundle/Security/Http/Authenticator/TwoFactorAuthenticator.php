@@ -42,6 +42,12 @@ class TwoFactorAuthenticator implements AuthenticatorInterface, InteractiveAuthe
     public const FLAG_2FA_COMPLETE = '2fa_complete';
 
     private LoggerInterface $logger;
+    private TwoFactorFirewallConfig $twoFactorFirewallConfig;
+    private TokenStorageInterface $tokenStorage;
+    private AuthenticationSuccessHandlerInterface $successHandler;
+    private AuthenticationFailureHandlerInterface $failureHandler;
+    private AuthenticationRequiredHandlerInterface $authenticationRequiredHandler;
+    private EventDispatcherInterface $eventDispatcher;
 
     public function __construct(
          TwoFactorFirewallConfig $twoFactorFirewallConfig,
@@ -53,6 +59,12 @@ class TwoFactorAuthenticator implements AuthenticatorInterface, InteractiveAuthe
         ?LoggerInterface $logger = null
     ) {
         $this->logger = $logger ?? new NullLogger();
+        $this->twoFactorFirewallConfig = $twoFactorFirewallConfig;
+        $this->tokenStorage = $tokenStorage;
+        $this->successHandler = $successHandler;
+        $this->failureHandler = $failureHandler;
+        $this->authenticationRequiredHandler = $authenticationRequiredHandler;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     public function supports(Request $request): ?bool

@@ -15,6 +15,13 @@ use function strlen;
  */
 class GoogleAuthenticator implements GoogleAuthenticatorInterface
 {
+    private GoogleTotpFactory $totpFactory;
+    private int $window;
+    /**
+     * @var mixed
+     */
+    private $leeway;
+
     public function __construct(
         GoogleTotpFactory $totpFactory,
         /** @var 0|positive-int */
@@ -22,6 +29,9 @@ class GoogleAuthenticator implements GoogleAuthenticatorInterface
         /** @var 0|positive-int|null */
         $leeway
     ) {
+        $this->totpFactory = $totpFactory;
+        $this->window = $window;
+        $this->leeway = $leeway;
     }
 
     public function checkCode(TwoFactorInterface $user, string $code): bool

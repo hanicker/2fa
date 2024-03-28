@@ -21,6 +21,7 @@ class DoctrinePersisterFactory
         ?ManagerRegistry $managerRegistry,
          $objectManagerName
     ) {
+        $this->objectManagerName = $objectManagerName;
         if (null === $managerRegistry) {
             $msg = 'scheb/2fa-bundle requires Doctrine to manage the user entity. If you don\'t want something else ';
             $msg .= 'for persistence, implement your own persister service and configure it in scheb_two_factor.persister.';

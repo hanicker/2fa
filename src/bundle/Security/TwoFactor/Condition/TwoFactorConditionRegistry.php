@@ -12,10 +12,16 @@ use Scheb\TwoFactorBundle\Security\TwoFactor\AuthenticationContextInterface;
 class TwoFactorConditionRegistry
 {
     /**
+     * @var iterable|TwoFactorConditionInterface[]
+     */
+    private iterable $conditions;
+
+    /**
      * @param TwoFactorConditionInterface[] $conditions
      */
     public function __construct(iterable $conditions)
     {
+        $this->conditions = $conditions;
     }
 
     public function shouldPerformTwoFactorAuthentication(AuthenticationContextInterface $context): bool

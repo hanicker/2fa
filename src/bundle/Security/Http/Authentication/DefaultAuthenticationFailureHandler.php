@@ -14,10 +14,15 @@ use Symfony\Component\Security\Http\HttpUtils;
 
 class DefaultAuthenticationFailureHandler implements AuthenticationFailureHandlerInterface
 {
+    private TwoFactorFirewallConfig $config;
+    private HttpUtils $httpUtils;
+
     public function __construct(
          HttpUtils $httpUtils,
          TwoFactorFirewallConfig $config
     ) {
+        $this->httpUtils = $httpUtils;
+        $this->config = $config;
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): Response

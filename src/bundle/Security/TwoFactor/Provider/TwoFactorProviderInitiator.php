@@ -15,10 +15,15 @@ use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Exception\UnknownTwoFactor
  */
 class TwoFactorProviderInitiator
 {
+    private TwoFactorProviderRegistry $providerRegistry;
+    private TwoFactorTokenFactoryInterface $twoFactorTokenFactory;
+
     public function __construct(
          TwoFactorProviderRegistry $providerRegistry,
          TwoFactorTokenFactoryInterface $twoFactorTokenFactory
     ) {
+        $this->providerRegistry = $providerRegistry;
+        $this->twoFactorTokenFactory = $twoFactorTokenFactory;
     }
 
     /**

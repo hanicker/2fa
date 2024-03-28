@@ -13,10 +13,16 @@ use function in_array;
 class AuthenticatedTokenCondition implements TwoFactorConditionInterface
 {
     /**
+     * @var string[]
+     */
+    private array $supportedTokens;
+
+    /**
      * @param string[] $supportedTokens
      */
     public function __construct(array $supportedTokens)
     {
+        $this->supportedTokens = $supportedTokens;
     }
 
     public function shouldPerformTwoFactorAuthentication(AuthenticationContextInterface $context): bool

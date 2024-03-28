@@ -14,6 +14,7 @@ class DoctrinePersister implements PersisterInterface
 {
     public function __construct( ObjectManager $om)
     {
+        $this->om = $om;
     }
 
     public function persist(object $user): void

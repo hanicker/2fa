@@ -11,6 +11,13 @@ use function array_merge;
 
 class DefaultTwoFactorFormRenderer implements TwoFactorFormRendererInterface
 {
+    private Environment $twigEnvironment;
+    private string $template;
+    /**
+     * @var mixed[]
+     */
+    private array $templateVars;
+
     /**
      * @param array<string,mixed> $templateVars
      */
@@ -19,6 +26,9 @@ class DefaultTwoFactorFormRenderer implements TwoFactorFormRendererInterface
          string $template,
          array $templateVars = []
     ) {
+        $this->twigEnvironment = $twigEnvironment;
+        $this->template = $template;
+        $this->templateVars = $templateVars;
     }
 
     /**

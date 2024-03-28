@@ -12,12 +12,21 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 
 class AuthenticationContext implements AuthenticationContextInterface
 {
+    private Request $request;
+    private TokenInterface $token;
+    private Passport $passport;
+    private string $firewallName;
+
     public function __construct(
         Request $request,
         TokenInterface $token,
         Passport $passport,
         string $firewallName
     ) {
+        $this->request = $request;
+        $this->token = $token;
+        $this->passport = $passport;
+        $this->firewallName = $firewallName;
     }
 
     public function getToken(): TokenInterface
