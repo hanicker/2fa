@@ -22,10 +22,10 @@ use function substr;
 class TwoFactorAccessDecider
 {
     public function __construct(
-        private AccessMapInterface $accessMap,
-        private AccessDecisionManagerInterface $accessDecisionManager,
-        private HttpUtils $httpUtils,
-        private LogoutUrlGenerator $logoutUrlGenerator,
+         AccessMapInterface $accessMap,
+         AccessDecisionManagerInterface $accessDecisionManager,
+         HttpUtils $httpUtils,
+         LogoutUrlGenerator $logoutUrlGenerator
     ) {
     }
 

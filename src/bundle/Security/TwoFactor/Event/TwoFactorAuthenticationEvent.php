@@ -14,8 +14,8 @@ use Symfony\Contracts\EventDispatcher\Event;
 class TwoFactorAuthenticationEvent extends Event
 {
     public function __construct(
-        private Request $request,
-        private TokenInterface $token,
+         Request $request,
+         TokenInterface $token
     ) {
     }
 

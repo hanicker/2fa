@@ -19,17 +19,23 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Logout\LogoutUrlGenerator;
 use function count;
-use function str_contains;
+
+if(!function_exists('str_contains')){
+    function str_contains(string $haystack, string $needle): bool
+    {
+        return '' === $needle || false !== strpos($haystack, $needle);
+    }
+}
 
 class FormController
 {
     public function __construct(
-        private TokenStorageInterface $tokenStorage,
-        private TwoFactorProviderRegistry $providerRegistry,
-        private TwoFactorFirewallContext $twoFactorFirewallContext,
-        private LogoutUrlGenerator $logoutUrlGenerator,
-        private ?TrustedDeviceManagerInterface $trustedDeviceManager,
-        private bool $trustedFeatureEnabled,
+         TokenStorageInterface $tokenStorage,
+         TwoFactorProviderRegistry $providerRegistry,
+         TwoFactorFirewallContext $twoFactorFirewallContext,
+         LogoutUrlGenerator $logoutUrlGenerator,
+         ?TrustedDeviceManagerInterface $trustedDeviceManager,
+         bool $trustedFeatureEnabled
     ) {
     }
 
@@ -65,7 +71,7 @@ class FormController
 
         try {
             $token->preferTwoFactorProvider($preferredProvider);
-        } catch (UnknownTwoFactorProviderException) {
+        } catch (UnknownTwoFactorProviderException $e) {
             // Bad user input
         }
     }

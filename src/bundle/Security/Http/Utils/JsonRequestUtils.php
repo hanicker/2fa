@@ -13,7 +13,13 @@ use Symfony\Component\PropertyAccess\PropertyAccessor;
 use function is_scalar;
 use function json_decode;
 use function method_exists;
-use function str_contains;
+
+if(!function_exists('str_contains')){
+    function str_contains(string $haystack, string $needle): bool
+    {
+        return '' === $needle || false !== strpos($haystack, $needle);
+    }
+}
 
 /**
  * @internal Helper class to retrieve data from JSON payload
@@ -33,7 +39,7 @@ class JsonRequestUtils
      * Read data from a JSON payload.
      * Paths like foo.bar will be evaluated to find deeper items in nested data structures.
      */
-    public static function getJsonPayloadValue(Request $request, string $parameterName): string|int|float|bool|null
+    public static function getJsonPayloadValue(Request $request, string $parameterName)
     {
         /** @psalm-suppress RedundantCastGivenDocblockType */
         $data = json_decode((string) $request->getContent());
@@ -47,7 +53,7 @@ class JsonRequestUtils
 
         try {
             $value = self::$propertyAccessor->getValue($data, $parameterName);
-        } catch (AccessException) {
+        } catch (AccessException $e) {
             return null;
         }
 

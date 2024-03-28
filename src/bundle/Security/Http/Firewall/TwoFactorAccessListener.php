@@ -22,9 +22,9 @@ use Symfony\Component\Security\Http\Firewall\FirewallListenerInterface;
 class TwoFactorAccessListener extends AbstractListener implements FirewallListenerInterface
 {
     public function __construct(
-        private TwoFactorFirewallConfig $twoFactorFirewallConfig,
-        private TokenStorageInterface $tokenStorage,
-        private TwoFactorAccessDecider $twoFactorAccessDecider,
+         TwoFactorFirewallConfig $twoFactorFirewallConfig,
+         TokenStorageInterface $tokenStorage,
+         TwoFactorAccessDecider $twoFactorAccessDecider
     ) {
     }
 

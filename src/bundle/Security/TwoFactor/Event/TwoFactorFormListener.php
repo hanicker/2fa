@@ -18,9 +18,9 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 class TwoFactorFormListener implements EventSubscriberInterface
 {
     public function __construct(
-        private TwoFactorFirewallConfig $twoFactorFirewallConfig,
-        private TokenStorageInterface $tokenStorage,
-        private EventDispatcherInterface $eventDispatcher,
+         TwoFactorFirewallConfig $twoFactorFirewallConfig,
+         TokenStorageInterface $tokenStorage,
+         EventDispatcherInterface $eventDispatcher
     ) {
     }
 

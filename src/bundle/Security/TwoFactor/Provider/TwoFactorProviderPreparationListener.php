@@ -35,12 +35,12 @@ class TwoFactorProviderPreparationListener implements EventSubscriberInterface
     private LoggerInterface $logger;
 
     public function __construct(
-        private TwoFactorProviderRegistry $providerRegistry,
-        private PreparationRecorderInterface $preparationRecorder,
+         TwoFactorProviderRegistry $providerRegistry,
+         PreparationRecorderInterface $preparationRecorder,
         ?LoggerInterface $logger,
-        private string $firewallName,
-        private bool $prepareOnLogin,
-        private bool $prepareOnAccessDenied
+         string $firewallName,
+         bool $prepareOnLogin,
+         bool $prepareOnAccessDenied
     ) {
         $this->logger = $logger ?? new NullLogger();
     }
@@ -114,7 +114,7 @@ class TwoFactorProviderPreparationListener implements EventSubscriberInterface
             $this->providerRegistry->getProvider($providerName)->prepareAuthentication($user);
             $this->preparationRecorder->setTwoFactorProviderPrepared($firewallName, $providerName);
             $this->logger->info(sprintf('Two-factor provider "%s" prepared.', $providerName));
-        } catch (UnexpectedTokenException) {
+        } catch (UnexpectedTokenException $e) {
             $this->logger->info(sprintf('Two-factor provider "%s" was not prepared, security token was change within the request.', $providerName));
         }
     }

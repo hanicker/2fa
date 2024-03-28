@@ -15,7 +15,7 @@ class AuthenticatedTokenCondition implements TwoFactorConditionInterface
     /**
      * @param string[] $supportedTokens
      */
-    public function __construct(private array $supportedTokens)
+    public function __construct(array $supportedTokens)
     {
     }
 
@@ -23,6 +23,6 @@ class AuthenticatedTokenCondition implements TwoFactorConditionInterface
     {
         $token = $context->getToken();
 
-        return in_array($token::class, $this->supportedTokens, true);
+        return in_array(get_class($token), $this->supportedTokens, true);
     }
 }

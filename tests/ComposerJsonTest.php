@@ -13,7 +13,15 @@ use function file_get_contents;
 use function implode;
 use function json_decode;
 use function sprintf;
-use function str_starts_with;
+
+
+if(!function_exists('str_starts_with')){
+    function str_starts_with(string $haystack, string $needle): bool
+    {
+        return strncmp($haystack, $needle, strlen($needle)) === 0;
+    }
+}
+
 
 class ComposerJsonTest extends TestCase
 {

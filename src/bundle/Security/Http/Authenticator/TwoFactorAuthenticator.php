@@ -44,12 +44,12 @@ class TwoFactorAuthenticator implements AuthenticatorInterface, InteractiveAuthe
     private LoggerInterface $logger;
 
     public function __construct(
-        private TwoFactorFirewallConfig $twoFactorFirewallConfig,
-        private TokenStorageInterface $tokenStorage,
-        private AuthenticationSuccessHandlerInterface $successHandler,
-        private AuthenticationFailureHandlerInterface $failureHandler,
-        private AuthenticationRequiredHandlerInterface $authenticationRequiredHandler,
-        private EventDispatcherInterface $eventDispatcher,
+         TwoFactorFirewallConfig $twoFactorFirewallConfig,
+         TokenStorageInterface $tokenStorage,
+         AuthenticationSuccessHandlerInterface $successHandler,
+         AuthenticationFailureHandlerInterface $failureHandler,
+         AuthenticationRequiredHandlerInterface $authenticationRequiredHandler,
+         EventDispatcherInterface $eventDispatcher,
         ?LoggerInterface $logger = null
     ) {
         $this->logger = $logger ?? new NullLogger();

@@ -9,7 +9,6 @@ use LogicException;
 use RuntimeException;
 use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Exception\UnknownTwoFactorProviderException;
 use Scheb\TwoFactorBundle\Security\UsernameHelper;
-use Stringable;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use function array_key_exists;
@@ -22,7 +21,7 @@ use function serialize;
 use function sprintf;
 use function unserialize;
 
-class TwoFactorToken implements TwoFactorTokenInterface, Stringable
+class TwoFactorToken implements TwoFactorTokenInterface
 {
     private TokenInterface $authenticatedToken;
 
@@ -40,9 +39,9 @@ class TwoFactorToken implements TwoFactorTokenInterface, Stringable
      */
     public function __construct(
         TokenInterface $authenticatedToken,
-        private ?string $credentials,
-        private string $firewallName,
-        array $twoFactorProviders,
+         ?string $credentials,
+         string $firewallName,
+        array $twoFactorProviders
     ) {
         if (null === $authenticatedToken->getUser()) {
             throw new InvalidArgumentException('The authenticated token must have a user object set.');

@@ -17,11 +17,13 @@ use Symfony\Component\Security\Http\Event\CheckPassportEvent;
 class CheckTwoFactorCodeListener extends AbstractCheckCodeListener
 {
     public const LISTENER_PRIORITY = 0;
+    private TwoFactorProviderRegistry $providerRegistry;
 
     public function __construct(
         PreparationRecorderInterface $preparationRecorder,
-        private TwoFactorProviderRegistry $providerRegistry
+        TwoFactorProviderRegistry $providerRegistry
     ) {
+        $this->providerRegistry = $providerRegistry;
         parent::__construct($preparationRecorder);
     }
 
@@ -29,7 +31,7 @@ class CheckTwoFactorCodeListener extends AbstractCheckCodeListener
     {
         try {
             $authenticationProvider = $this->providerRegistry->getProvider($providerName);
-        } catch (InvalidArgumentException) {
+        } catch (InvalidArgumentException $exception) {
             $exception = new TwoFactorProviderNotFoundException('Two-factor provider "'.$providerName.'" not found.');
             $exception->setProvider($providerName);
 

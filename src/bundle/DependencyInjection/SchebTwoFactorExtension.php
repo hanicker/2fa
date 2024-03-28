@@ -254,7 +254,7 @@ class SchebTwoFactorExtension extends Extension
         return count($parameters) >= 3 && 'leeway' === $parameters[2]->getName();
     }
 
-    private function resolveFeatureFlag(ContainerBuilder $container, bool|string $value): bool
+    private function resolveFeatureFlag(ContainerBuilder $container, $value): bool
     {
         $retValue = $container->resolveEnvPlaceholders($value, true);
 

@@ -15,7 +15,7 @@ use function method_exists;
  */
 class AuthenticationTrustResolver implements AuthenticationTrustResolverInterface
 {
-    public function __construct(private AuthenticationTrustResolverInterface $decoratedTrustResolver)
+    public function __construct( AuthenticationTrustResolverInterface $decoratedTrustResolver)
     {
     }
 

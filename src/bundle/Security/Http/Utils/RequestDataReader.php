@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class RequestDataReader
 {
-    public function getRequestValue(Request $request, string $parameterName): string|int|float|bool|null
+    public function getRequestValue(Request $request, string $parameterName)
     {
         if (JsonRequestUtils::isJsonRequest($request)) {
             return JsonRequestUtils::getJsonPayloadValue($request, $parameterName);

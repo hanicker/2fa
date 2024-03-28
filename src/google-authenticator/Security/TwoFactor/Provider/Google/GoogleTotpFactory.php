@@ -16,9 +16,9 @@ use function strlen;
 class GoogleTotpFactory
 {
     public function __construct(
-        private ?string $server,
-        private ?string $issuer,
-        private int $digits,
+        $server,
+        $issuer,
+        $digits
     ) {
     }
 

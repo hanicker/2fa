@@ -16,8 +16,8 @@ use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Exception\UnknownTwoFactor
 class TwoFactorProviderInitiator
 {
     public function __construct(
-        private TwoFactorProviderRegistry $providerRegistry,
-        private TwoFactorTokenFactoryInterface $twoFactorTokenFactory
+         TwoFactorProviderRegistry $providerRegistry,
+         TwoFactorTokenFactoryInterface $twoFactorTokenFactory
     ) {
     }
 
@@ -68,7 +68,7 @@ class TwoFactorProviderInitiator
 
         try {
             $token->preferTwoFactorProvider($preferredProvider);
-        } catch (UnknownTwoFactorProviderException) {
+        } catch (UnknownTwoFactorProviderException $e) {
             // Bad user input
         }
     }

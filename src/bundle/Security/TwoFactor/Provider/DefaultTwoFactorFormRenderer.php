@@ -15,9 +15,9 @@ class DefaultTwoFactorFormRenderer implements TwoFactorFormRendererInterface
      * @param array<string,mixed> $templateVars
      */
     public function __construct(
-        private Environment $twigEnvironment,
-        private string $template,
-        private array $templateVars = [],
+         Environment $twigEnvironment,
+         string $template,
+         array $templateVars = []
     ) {
     }
 
