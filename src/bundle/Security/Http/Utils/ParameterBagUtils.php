@@ -50,7 +50,7 @@ class ParameterBagUtils
         }
     }
 
-    private static function getFromRequest(Request $request, string $path): mixed
+    private static function getFromRequest(Request $request, string $path)
     {
         $value = $request->query->all()[$path] ?? null;
         if (null !== $value) {

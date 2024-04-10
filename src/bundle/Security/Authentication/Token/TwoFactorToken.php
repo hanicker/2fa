@@ -232,7 +232,7 @@ class TwoFactorToken implements TwoFactorTokenInterface
     /**
      * Compatibility for Symfony < 6.0.
      */
-    public function unserialize(string $serialized): void
+    public function unserialize($serialized): void
     {
         $this->__unserialize(unserialize($serialized));
     }
@@ -282,7 +282,7 @@ class TwoFactorToken implements TwoFactorTokenInterface
         return $this->attributes[$name];
     }
 
-    public function setAttribute(string $name, mixed $value): void
+    public function setAttribute(string $name, $value): void
     {
         $this->attributes[$name] = $value;
     }
